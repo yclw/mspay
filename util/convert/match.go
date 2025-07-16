@@ -3,7 +3,7 @@ package convert
 // 匹配
 
 import (
-	"github.com/yclw/mspay/utility/validate"
+	"github.com/yclw/mspay/util/validate"
 
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"

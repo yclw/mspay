@@ -3,10 +3,11 @@ package convert
 // 转换
 
 import (
-	"github.com/yclw/mspay/utility/validate"
 	"reflect"
 	"unicode"
 	"unsafe"
+
+	"github.com/yclw/mspay/util/validate"
 
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"

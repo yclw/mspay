@@ -5,8 +5,9 @@ package url
 import (
 	"context"
 	"fmt"
-	"github.com/yclw/mspay/utility/validate"
 	"strings"
+
+	"github.com/yclw/mspay/util/validate"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

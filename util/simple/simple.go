@@ -4,7 +4,8 @@ package simple
 
 import (
 	"context"
-	"github.com/yclw/mspay/utility/encrypt"
+
+	"github.com/yclw/mspay/util/encrypt"
 
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/encoding/gbase64"
