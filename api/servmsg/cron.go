@@ -1,8 +1,8 @@
 package servmsg
 
 import (
-	"hotgo/internal/library/network/tcp"
-	"hotgo/internal/model/input/sysin"
+	"github.com/yclw/mspay/internal/model/input/sysin"
+	"github.com/yclw/mspay/pkg/network/tcp"
 )
 
 // CronDeleteReq 删除任务

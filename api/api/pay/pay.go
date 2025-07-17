@@ -7,7 +7,7 @@ package pay
 import (
 	"context"
 
-	"hotgo/api/api/pay/v1"
+	v1 "github.com/yclw/mspay/api/api/pay/v1"
 )
 
 type IPayV1 interface {

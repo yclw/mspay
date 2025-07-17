@@ -7,10 +7,11 @@ package adminin
 
 import (
 	"context"
+
 	"github.com/gogf/gf/v2/errors/gerror"
-	"hotgo/internal/model"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
 )
 
 // MenuEditInp 修改/新增菜单

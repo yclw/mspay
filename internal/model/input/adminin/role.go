@@ -7,11 +7,12 @@ package adminin
 
 import (
 	"context"
+
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/errors/gerror"
-	"hotgo/internal/model"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
 )
 
 // GetPermissionsInp 获取指定角色的菜单权限

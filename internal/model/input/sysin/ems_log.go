@@ -6,8 +6,8 @@
 package sysin
 
 import (
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
 
 	"github.com/gogf/gf/v2/frame/g"
 )

@@ -8,10 +8,11 @@ package sysin
 
 import (
 	"context"
-	"hotgo/internal/consts"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
-	"hotgo/utility/validate"
+
+	"github.com/yclw/mspay/internal/consts"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/util/validate"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

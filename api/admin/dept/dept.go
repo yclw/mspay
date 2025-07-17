@@ -7,9 +7,9 @@ package dept
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model/input/adminin"
-	"hotgo/internal/model/input/form"
-	"hotgo/utility/tree"
+	"github.com/yclw/mspay/internal/model/input/adminin"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/util/tree"
 )
 
 // ListReq 查询列表

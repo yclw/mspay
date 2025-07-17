@@ -7,13 +7,14 @@ package adminin
 
 import (
 	"context"
+
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/os/gtime"
-	"hotgo/internal/consts"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
-	"hotgo/utility/tree"
-	"hotgo/utility/validate"
+	"github.com/yclw/mspay/internal/consts"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/util/tree"
+	"github.com/yclw/mspay/util/validate"
 )
 
 // DeptMaxSortInp 最大排序

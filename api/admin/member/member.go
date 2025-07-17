@@ -7,8 +7,8 @@ package member
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model/input/adminin"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/input/adminin"
+	"github.com/yclw/mspay/internal/model/input/form"
 )
 
 // UpdateCashReq 更新提现信息

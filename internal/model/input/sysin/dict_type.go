@@ -7,9 +7,10 @@ package sysin
 
 import (
 	"context"
+
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/entity"
 )
 
 // DictTypeEditInp 修改/新增字典数据

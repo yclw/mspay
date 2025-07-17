@@ -8,8 +8,8 @@ package monitor
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
-	"hotgo/internal/library/network/tcp"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/pkg/network/tcp"
 )
 
 // UserOfflineReq 下线用户

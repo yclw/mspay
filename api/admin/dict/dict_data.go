@@ -7,8 +7,8 @@ package dict
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model/input/form"
-	"hotgo/internal/model/input/sysin"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/input/sysin"
 )
 
 // DataEditReq 修改/新增字典数据

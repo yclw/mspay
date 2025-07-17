@@ -7,14 +7,11 @@ package adminin
 
 import (
 	"context"
-	"github.com/gogf/gf/v2/errors/gerror"
+
 	"github.com/gogf/gf/v2/os/gtime"
-	"hotgo/internal/consts"
-	"hotgo/internal/library/dict"
-	"hotgo/internal/library/hgorm/hook"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
-	"hotgo/internal/model/input/payin"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/input/payin"
 )
 
 // OrderAcceptRefundInp 受理申请退款
@@ -23,18 +20,6 @@ type OrderAcceptRefundInp struct {
 	RejectRefundReason string `json:"rejectRefundReason"         dc:"拒绝退款原因"`
 	Status             int64  `json:"status"                     dc:"状态"`
 	Remark             string `json:"remark"                     dc:"退款备注"`
-}
-
-func (in *OrderAcceptRefundInp) Filter(ctx context.Context) (err error) {
-	if !dict.HasOptionKey(consts.OrderStatusOptions, in.Status) {
-		err = gerror.Newf("订单状态不正确")
-		return
-	}
-
-	if in.Status == consts.OrderStatusReturnReject && in.Remark == "" {
-		in.Remark = "退款申请被拒绝"
-	}
-	return
 }
 
 type OrderAcceptRefundModel struct {
@@ -124,9 +109,8 @@ func (in *OrderListInp) Filter(ctx context.Context) (err error) {
 
 type OrderListModel struct {
 	entity.AdminOrder
-	OutTradeNo    string            `json:"payLogOutTradeNo"  dc:"商户订单号"`
-	PayType       string            `json:"payLogPayType"  dc:"支付类型"`
-	MemberBySumma *hook.MemberSumma `json:"memberBySumma"   dc:"下单用户信息"`
+	OutTradeNo string `json:"payLogOutTradeNo"  dc:"商户订单号"`
+	PayType    string `json:"payLogPayType"  dc:"支付类型"`
 }
 
 // OrderExportModel 导出充值订单

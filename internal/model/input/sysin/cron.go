@@ -1,14 +1,8 @@
-// Package sysin
-// @Link  https://github.com/bufanyun/hotgo
-// @Copyright  Copyright (c) 2023 HotGo CLI
-// @Author  Ms <133814250@qq.com>
-// @License  https://github.com/bufanyun/hotgo/blob/master/LICENSE
 package sysin
 
 import (
-	"hotgo/internal/library/cron"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
 )
 
 // CronMaxSortInp 最大排序
@@ -66,10 +60,17 @@ type OnlineExecInp struct {
 }
 type OnlineExecModel struct{}
 
+// Log 任务调度日志
+type Log struct {
+	FileName   string `json:"fileName" dc:"文件名称"`
+	SizeFormat string `json:"sizeFormat" dc:"文件大小"`
+	Contents   string `json:"contents" dc:"文件内容"`
+}
+
 // DispatchLogInp 查看指定任务的调度日志
 type DispatchLogInp struct {
 	entity.SysCron
 }
 type DispatchLogModel struct {
-	*cron.Log
+	*Log
 }

@@ -9,8 +9,8 @@ package pay
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model/input/form"
-	"hotgo/internal/model/input/payin"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/input/payin"
 )
 
 // RefundListReq 查询交易退款列表

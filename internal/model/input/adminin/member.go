@@ -7,12 +7,11 @@ package adminin
 
 import (
 	"context"
-	"fmt"
-	"hotgo/internal/consts"
-	"hotgo/internal/library/contexts"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
-	"hotgo/utility/validate"
+
+	"github.com/yclw/mspay/internal/consts"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/util/validate"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -267,29 +266,6 @@ type MemberAddBalanceInp struct {
 }
 
 func (in *MemberAddBalanceInp) Filter(ctx context.Context) (err error) {
-	if in.Num <= 0 {
-		err = gerror.New("操作数量必须大于0")
-		return
-	}
-
-	if in.OperateMode == 1 {
-		// 加款
-		in.SelfNum = -in.Num
-		in.SelfCreditGroup = consts.CreditGroupOpIncr
-		in.OtherNum = in.Num
-		in.OtherCreditGroup = consts.CreditGroupIncr
-		in.Remark = fmt.Sprintf("增加余额:%v", in.OtherNum)
-	} else {
-		// 扣款
-		in.SelfNum = in.Num
-		in.SelfCreditGroup = consts.CreditGroupOpDecr
-		in.OtherNum = -in.Num
-		in.OtherCreditGroup = consts.CreditGroupDecr
-		in.Remark = fmt.Sprintf("扣除余额:%v", in.OtherNum)
-	}
-
-	in.AppId = contexts.GetModule(ctx)
-	in.AddonsName = contexts.GetAddonName(ctx)
 	return
 }
 
@@ -310,29 +286,6 @@ type MemberAddIntegralInp struct {
 }
 
 func (in *MemberAddIntegralInp) Filter(ctx context.Context) (err error) {
-	if in.Num <= 0 {
-		err = gerror.New("操作数量必须大于0")
-		return
-	}
-
-	if in.OperateMode == 1 {
-		// 加款
-		in.SelfNum = -in.Num
-		in.SelfCreditGroup = consts.CreditGroupOpIncr
-		in.OtherNum = in.Num
-		in.OtherCreditGroup = consts.CreditGroupIncr
-		in.Remark = fmt.Sprintf("增加积分:%v", in.OtherNum)
-	} else {
-		// 扣款
-		in.SelfNum = in.Num
-		in.SelfCreditGroup = consts.CreditGroupOpDecr
-		in.OtherNum = -in.Num
-		in.OtherCreditGroup = consts.CreditGroupDecr
-		in.Remark = fmt.Sprintf("扣除积分:%v", in.OtherNum)
-	}
-
-	in.AppId = contexts.GetModule(ctx)
-	in.AddonsName = contexts.GetAddonName(ctx)
 	return
 }
 

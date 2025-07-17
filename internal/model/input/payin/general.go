@@ -9,7 +9,7 @@ import (
 	"github.com/go-pay/gopay/wechat/v3"
 	"github.com/gogf/gf/v2/os/gtime"
 	officialJs "github.com/silenceper/wechat/v2/officialaccount/js"
-	"hotgo/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/entity"
 )
 
 // 和功能库[payment]包的通用输入/输出

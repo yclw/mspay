@@ -2,12 +2,14 @@ package cmd
 
 import (
 	"context"
-	"github.com/gogf/gf/v2/os/gctx"
-	"github.com/gogf/gf/v2/os/gproc"
-	"github.com/yclw/mspay/util/simple"
-	"hotgo/internal/consts"
 	"os"
 	"sync"
+
+	"github.com/yclw/mspay/internal/consts"
+	"github.com/yclw/mspay/util/simple"
+
+	"github.com/gogf/gf/v2/os/gctx"
+	"github.com/gogf/gf/v2/os/gproc"
 )
 
 var (

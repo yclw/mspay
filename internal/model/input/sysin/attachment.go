@@ -7,12 +7,14 @@ package sysin
 
 import (
 	"context"
+
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/pkg/storager"
+	"github.com/yclw/mspay/util/validate"
+
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/os/gtime"
-	"hotgo/internal/library/storager"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
-	"hotgo/utility/validate"
 )
 
 // AttachmentDeleteInp 删除附件

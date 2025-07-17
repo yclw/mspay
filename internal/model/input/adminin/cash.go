@@ -6,9 +6,8 @@
 package adminin
 
 import (
-	"hotgo/internal/library/hgorm/hook"
-	"hotgo/internal/model/entity"
-	"hotgo/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/entity"
+	"github.com/yclw/mspay/internal/model/input/form"
 )
 
 // CashViewInp 获取信息
@@ -31,7 +30,6 @@ type CashListInp struct {
 }
 
 type CashListModel struct {
-	MemberBySumma *hook.MemberSumma `json:"memberBySumma"   dc:"申请人信息"`
 	entity.AdminCash
 }
 

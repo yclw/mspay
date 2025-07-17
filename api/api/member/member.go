@@ -7,7 +7,7 @@ package member
 import (
 	"context"
 
-	"hotgo/api/api/member/v1"
+	v1 "github.com/yclw/mspay/api/api/member/v1"
 )
 
 type IMemberV1 interface {

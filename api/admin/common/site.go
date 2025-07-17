@@ -7,8 +7,8 @@ package common
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model"
-	"hotgo/internal/model/input/adminin"
+	"github.com/yclw/mspay/internal/model"
+	"github.com/yclw/mspay/internal/model/input/adminin"
 )
 
 // LoginLogoutReq 注销登录

@@ -5,10 +5,6 @@
 // @License  https://github.com/bufanyun/hotgo/blob/master/LICENSE
 package form
 
-import (
-	"hotgo/internal/consts"
-)
-
 type ReqPageFunc interface {
 	GetPage() int
 	GetPerPage() int
@@ -36,33 +32,4 @@ type PageRes struct {
 	PageReq
 	PageCount  int `json:"pageCount" example:"0"  dc:"分页个数"`
 	TotalCount int `json:"totalCount" example:"0" dc:"数据总行数"`
-}
-
-// Pack 打包分页数据
-func (res *PageRes) Pack(req ReqPageFunc, totalCount int) {
-	res.TotalCount = totalCount
-	res.PageCount = CalPageCount(totalCount, req.GetPerPage())
-	res.Page = req.GetPage()
-	res.PerPage = req.GetPerPage()
-}
-
-func CalPageCount(totalCount int, perPage int) int {
-	return (totalCount + perPage - 1) / perPage
-}
-
-// CalPage 计算分页偏移量
-func CalPage(page, perPage int) (newPage, newPerPage int, offset int) {
-	if page <= 0 {
-		newPage = consts.DefaultPage
-	} else {
-		newPage = page
-	}
-	if perPage <= 0 {
-		newPerPage = consts.DefaultPageSize
-	} else {
-		newPerPage = perPage
-	}
-
-	offset = (newPage - 1) * newPerPage
-	return
 }

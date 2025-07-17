@@ -8,7 +8,6 @@
 .vscode/
 vendor/
 composer.lock
-pkg/
 cbuild
 **/.DS_Store
 /test/

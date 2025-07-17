@@ -7,7 +7,7 @@ package common
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"hotgo/internal/model/input/commonin"
+	"github.com/yclw/mspay/internal/model/input/commonin"
 )
 
 // WechatAuthorizeReq 微信用户授权
