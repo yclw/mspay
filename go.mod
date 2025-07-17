@@ -4,6 +4,7 @@ go 1.24.2
 
 require (
 	github.com/forgoer/openssl v1.6.1
+	github.com/gogf/gf/contrib/trace/jaeger/v2 v2.7.4
 	github.com/gogf/gf/v2 v2.9.0
 	github.com/xuri/excelize/v2 v2.9.1
 )
@@ -32,6 +33,7 @@ require (
 	github.com/xuri/efp v0.0.1 // indirect
 	github.com/xuri/nfp v0.0.1 // indirect
 	go.opentelemetry.io/otel v1.32.0 // indirect
+	go.opentelemetry.io/otel/exporters/jaeger v1.14.0 // indirect
 	go.opentelemetry.io/otel/metric v1.32.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.32.0 // indirect
 	go.opentelemetry.io/otel/trace v1.32.0 // indirect
