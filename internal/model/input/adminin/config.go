@@ -1,9 +1,4 @@
-// Package model
-// @Link  https://github.com/bufanyun/hotgo
-// @Copyright  Copyright (c) 2023 HotGo CLI
-// @Author  Ms <133814250@qq.com>
-// @License  https://github.com/bufanyun/hotgo/blob/master/LICENSE
-package model
+package adminin
 
 // 后台配置.
 
@@ -49,52 +44,6 @@ type CashConfig struct {
 	MinFeeRatio float64 `json:"cashMinFeeRatio"`
 	MinMoney    float64 `json:"cashMinMoney"`
 	Tips        string  `json:"cashTips"`
-}
-
-// UploadConfig 上传配置
-type UploadConfig struct {
-	// 通用配置
-	Drive     string `json:"uploadDrive"`
-	FileSize  int64  `json:"uploadFileSize"`
-	FileType  string `json:"uploadFileType"`
-	ImageSize int64  `json:"uploadImageSize"`
-	ImageType string `json:"uploadImageType"`
-	// 本地存储配置
-	LocalPath string `json:"uploadLocalPath"`
-	// UCloud对象存储配置
-	UCloudBucketHost string `json:"uploadUCloudBucketHost"`
-	UCloudBucketName string `json:"uploadUCloudBucketName"`
-	UCloudEndpoint   string `json:"uploadUCloudEndpoint"`
-	UCloudFileHost   string `json:"uploadUCloudFileHost"`
-	UCloudPath       string `json:"uploadUCloudPath"`
-	UCloudPrivateKey string `json:"uploadUCloudPrivateKey"`
-	UCloudPublicKey  string `json:"uploadUCloudPublicKey"`
-	// 腾讯云cos配置
-	CosSecretId  string `json:"uploadCosSecretId"`
-	CosSecretKey string `json:"uploadCosSecretKey"`
-	CosBucketURL string `json:"uploadCosBucketURL"`
-	CosPath      string `json:"uploadCosPath"`
-	// 阿里云oss配置
-	OssSecretId  string `json:"uploadOssSecretId"`
-	OssSecretKey string `json:"uploadOssSecretKey"`
-	OssEndpoint  string `json:"uploadOssEndpoint"`
-	OssBucketURL string `json:"uploadOssBucketURL"`
-	OssPath      string `json:"uploadOssPath"`
-	OssBucket    string `json:"uploadOssBucket"`
-	// 七牛云对象存储配置
-	QiNiuAccessKey string `json:"uploadQiNiuAccessKey"`
-	QiNiuSecretKey string `json:"uploadQiNiuSecretKey"`
-	QiNiuDomain    string `json:"uploadQiNiuDomain"`
-	QiNiuPath      string `json:"uploadQiNiuPath"`
-	QiNiuBucket    string `json:"uploadQiNiuBucket"`
-	// minio配置
-	MinioAccessKey string `json:"uploadMinioAccessKey"`
-	MinioSecretKey string `json:"uploadMinioSecretKey"`
-	MinioEndpoint  string `json:"uploadMinioEndpoint"`
-	MinioUseSSL    int    `json:"uploadMinioUseSSL"`
-	MinioPath      string `json:"uploadMinioPath"`
-	MinioBucket    string `json:"uploadMinioBucket"`
-	MinioDomain    string `json:"uploadMinioDomain"`
 }
 
 // SmsTemplate 短信模板
@@ -169,15 +118,15 @@ type WechatConfig struct {
 
 // LoginConfig 登录配置
 type LoginConfig struct {
-	RegisterSwitch int     `json:"loginRegisterSwitch"`
-	CaptchaSwitch  int     `json:"loginCaptchaSwitch"`
-	CaptchaType    int     `json:"loginCaptchaType"`
-	Avatar         string  `json:"loginAvatar"`
-	RoleId         int64   `json:"loginRoleId"`
-	DeptId         int64   `json:"loginDeptId"`
-	PostIds        []int64 `json:"loginPostIds"`
-	Protocol       string  `json:"loginProtocol"`
-	Policy         string  `json:"loginPolicy"`
-	AutoOpenId     int     `json:"loginAutoOpenId"`
-	ForceInvite    int     `json:"loginForceInvite"`
+	RegisterSwitch int     `json:"loginRegisterSwitch"` // 注册开关
+	CaptchaSwitch  int     `json:"loginCaptchaSwitch"`  // 验证码开关
+	CaptchaType    int     `json:"loginCaptchaType"`    // 验证码类型
+	Avatar         string  `json:"loginAvatar"`         // 头像
+	RoleId         int64   `json:"loginRoleId"`         // 角色ID
+	DeptId         int64   `json:"loginDeptId"`         // 部门ID
+	PostIds        []int64 `json:"loginPostIds"`        // 岗位ID
+	Protocol       string  `json:"loginProtocol"`       // 协议
+	Policy         string  `json:"loginPolicy"`         // 政策
+	AutoOpenId     int     `json:"loginAutoOpenId"`     // 自动OpenId
+	ForceInvite    int     `json:"loginForceInvite"`    // 强制邀请
 }

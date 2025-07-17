@@ -81,6 +81,7 @@ github.com/gogf/gf/contrib/trace/jaeger/v2 v2.7.4 h1:JnUjXb7C9vmwcZFwXqnxi9H4/I0
 github.com/gogf/gf/contrib/trace/jaeger/v2 v2.7.4/go.mod h1:A3NhV8u45twLq5VdqObhYNhT4szLFLCROw4LzHM+lYg=
 github.com/gogf/gf/v2 v2.9.0 h1:semN5Q5qGjDQEv4620VzxcJzJlSD07gmyJ9Sy9zfbHk=
 github.com/gogf/gf/v2 v2.9.0/go.mod h1:sWGQw+pLILtuHmbOxoe0D+0DdaXxbleT57axOLH2vKI=
+github.com/golang-jwt/jwt/v5 v5.2.3 h1:kkGXqQOBSDDWRhWNXTFpqGSCMyh/PLnqUvMGJPDJDs0=
 github.com/golang-jwt/jwt/v5 v5.2.3/go.mod h1:pqrtFR0X4osieyHYxtmOUWsAWrfe1Q5UVIyoH402zdk=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.4.0-rc.1/go.mod h1:ceaxUfeHdC40wWswd/P6IGgMaK3YpKi5j83Wpe3EHw8=

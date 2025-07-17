@@ -8,6 +8,7 @@ require (
 	github.com/go-pay/gopay v1.5.114
 	github.com/gogf/gf/contrib/trace/jaeger/v2 v2.7.4
 	github.com/gogf/gf/v2 v2.9.0
+	github.com/golang-jwt/jwt/v5 v5.2.3
 	github.com/minio/minio-go/v7 v7.0.94
 	github.com/qiniu/go-sdk/v7 v7.25.4
 	github.com/silenceper/wechat/v2 v2.1.9

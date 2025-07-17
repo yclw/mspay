@@ -10,7 +10,6 @@ import (
 
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/yclw/mspay/internal/model"
 	"github.com/yclw/mspay/internal/model/entity"
 	"github.com/yclw/mspay/internal/model/input/form"
 )
@@ -136,8 +135,8 @@ type MenuRoleListInp struct {
 	RoleId int64
 }
 type MenuRoleListModel struct {
-	Menus       []*model.LabelTreeMenu `json:"menus"         dc:"菜单列表"`
-	CheckedKeys []int64                `json:"checkedKeys"   dc:"选择的菜单ID"`
+	Menus       []*LabelTreeMenu `json:"menus"         dc:"菜单列表"`
+	CheckedKeys []int64          `json:"checkedKeys"   dc:"选择的菜单ID"`
 }
 
 // DataScopeEditInp 获取数据权限选项

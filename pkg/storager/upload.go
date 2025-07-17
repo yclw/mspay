@@ -42,7 +42,7 @@ type UploadDrive interface {
 // New 初始化存储驱动
 func New(name ...string) UploadDrive {
 	var (
-		driveType = consts.UploadDriveLocal
+		driveType = UploadDriveLocal
 		drive     UploadDrive
 	)
 
@@ -51,17 +51,17 @@ func New(name ...string) UploadDrive {
 	}
 
 	switch driveType {
-	case consts.UploadDriveLocal:
+	case UploadDriveLocal:
 		drive = &LocalDrive{}
-	case consts.UploadDriveUCloud:
+	case UploadDriveUCloud:
 		drive = &UCloudDrive{}
-	case consts.UploadDriveCos:
+	case UploadDriveCos:
 		drive = &CosDrive{}
-	case consts.UploadDriveOss:
+	case UploadDriveOss:
 		drive = &OssDrive{}
-	case consts.UploadDriveQiNiu:
+	case UploadDriveQiNiu:
 		drive = &QiNiuDrive{}
-	case consts.UploadDriveMinio:
+	case UploadDriveMinio:
 		drive = &MinioDrive{}
 	default:
 		panic(fmt.Sprintf("暂不支持的存储驱动:%v", driveType))
@@ -165,17 +165,17 @@ func LastUrl(ctx context.Context, fullPath, drive string) string {
 	}
 
 	switch drive {
-	case consts.UploadDriveLocal:
+	case UploadDriveLocal:
 		return url.GetAddr(ctx) + "/" + fullPath
-	case consts.UploadDriveUCloud:
+	case UploadDriveUCloud:
 		return config.UCloudEndpoint + "/" + fullPath
-	case consts.UploadDriveCos:
+	case UploadDriveCos:
 		return config.CosBucketURL + "/" + fullPath
-	case consts.UploadDriveOss:
+	case UploadDriveOss:
 		return config.OssBucketURL + "/" + fullPath
-	case consts.UploadDriveQiNiu:
+	case UploadDriveQiNiu:
 		return config.QiNiuDomain + "/" + fullPath
-	case consts.UploadDriveMinio:
+	case UploadDriveMinio:
 		return fmt.Sprintf("%s/%s/%s", config.MinioDomain, config.MinioBucket, fullPath)
 	default:
 		return fullPath
@@ -341,7 +341,7 @@ func GetOrCreateMultipartProgress(ctx context.Context, in *CheckMultipartParams)
 
 // GetMultipartProgress 获取分片上传事件进度
 func GetMultipartProgress(ctx context.Context, uploadId string) (res *MultipartProgress, err error) {
-	key := fmt.Sprintf("%v:%v", consts.CacheMultipartUpload, uploadId)
+	key := fmt.Sprintf("%v:%v", CacheMultipartUpload, uploadId)
 	get, err := cache.Instance().Get(ctx, key)
 	if err != nil {
 		return nil, err
@@ -352,19 +352,19 @@ func GetMultipartProgress(ctx context.Context, uploadId string) (res *MultipartP
 
 // CreateMultipartProgress 创建分片上传事件进度
 func CreateMultipartProgress(ctx context.Context, in *MultipartProgress) (err error) {
-	key := fmt.Sprintf("%v:%v", consts.CacheMultipartUpload, in.UploadId)
+	key := fmt.Sprintf("%v:%v", CacheMultipartUpload, in.UploadId)
 	return cache.Instance().Set(ctx, key, in, time.Hour*24*7)
 }
 
 // UpdateMultipartProgress 更新分片上传事件进度
 func UpdateMultipartProgress(ctx context.Context, in *MultipartProgress) (err error) {
-	key := fmt.Sprintf("%v:%v", consts.CacheMultipartUpload, in.UploadId)
+	key := fmt.Sprintf("%v:%v", CacheMultipartUpload, in.UploadId)
 	return cache.Instance().Set(ctx, key, in, time.Hour*24*7)
 }
 
 // DelMultipartProgress 删除分片上传事件进度
 func DelMultipartProgress(ctx context.Context, in *MultipartProgress) (err error) {
-	key := fmt.Sprintf("%v:%v", consts.CacheMultipartUpload, in.UploadId)
+	key := fmt.Sprintf("%v:%v", CacheMultipartUpload, in.UploadId)
 	_, err = cache.Instance().Remove(ctx, key)
 	return
 }

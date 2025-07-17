@@ -9,7 +9,6 @@ import (
 	"context"
 
 	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/yclw/mspay/internal/model"
 	"github.com/yclw/mspay/internal/model/entity"
 	"github.com/yclw/mspay/internal/model/input/form"
 )
@@ -68,7 +67,7 @@ func (in *MenuSearchListInp) Filter(ctx context.Context) (err error) {
 	return
 }
 
-type MenuSearchListModel []*model.TreeMenu
+type MenuSearchListModel []*TreeMenu
 
 // MenuTree 树
 type MenuTree struct {
