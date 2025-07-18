@@ -1,13 +1,9 @@
-// Package common
-// @Link  https://github.com/bufanyun/hotgo
-// @Copyright  Copyright (c) 2023 HotGo CLI
-// @Author  Ms <133814250@qq.com>
-// @License  https://github.com/bufanyun/hotgo/blob/master/LICENSE
-package common
+package login
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/yclw/mspay/internal/model/input/adminin"
+	"github.com/yclw/mspay/internal/model/input/sysin"
 )
 
 // LoginLogoutReq 注销登录
@@ -75,7 +71,7 @@ type SiteLoginConfigReq struct {
 }
 
 type SiteLoginConfigRes struct {
-	*adminin.LoginConfig
+	*sysin.LoginConfig
 }
 
 // SitePingReq ping

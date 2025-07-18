@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"context"
+
 	"github.com/yclw/mspay/util/simple"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -53,7 +54,7 @@ var (
 			g.Log().Debug(ctx, "starting all server")
 
 			// 需要启动的服务
-			var allServers = []*gcmd.Command{}
+			var allServers = []*gcmd.Command{Http}
 
 			for _, server := range allServers {
 				var cmd = server
@@ -76,7 +77,7 @@ var (
 )
 
 func init() {
-	if err := Main.AddCommand(All, Help); err != nil {
+	if err := Main.AddCommand(All, Http, Help); err != nil {
 		panic(err)
 	}
 }

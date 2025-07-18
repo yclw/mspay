@@ -1,4 +1,4 @@
-package admin
+package user
 
 import (
 	"context"
@@ -15,16 +15,16 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 )
 
-var SAdminSite = NewAdminSite()
+var SUserLogin = NewUserLogin()
 
-type sAdminSite struct{}
+type sUserLogin struct{}
 
-func NewAdminSite() *sAdminSite {
-	return &sAdminSite{}
+func NewUserLogin() *sUserLogin {
+	return &sUserLogin{}
 }
 
 // AccountLogin 账号登录
-func (s *sAdminSite) AccountLogin(ctx context.Context, in *adminin.AccountLoginInp) (res *adminin.LoginModel, err error) {
+func (s *sUserLogin) AccountLogin(ctx context.Context, in *adminin.AccountLoginInp) (res *adminin.LoginModel, err error) {
 
 	var mb *entity.AdminMember
 	if err = dao.AdminMember.Ctx(ctx).Where("username", in.Username).Scan(&mb); err != nil {
@@ -60,7 +60,7 @@ func (s *sAdminSite) AccountLogin(ctx context.Context, in *adminin.AccountLoginI
 }
 
 // handleLogin 处理登录
-func (s *sAdminSite) handleLogin(ctx context.Context, mb *entity.AdminMember) (res *adminin.LoginModel, err error) {
+func (s *sUserLogin) handleLogin(ctx context.Context, mb *entity.AdminMember) (res *adminin.LoginModel, err error) {
 	role, err := s.getLoginRole(ctx, mb.RoleId)
 	if err != nil {
 		return nil, err
@@ -94,8 +94,8 @@ func (s *sAdminSite) handleLogin(ctx context.Context, mb *entity.AdminMember) (r
 	return
 }
 
-// getLoginRole 获取登录的角色和部门信息
-func (s *sAdminSite) getLoginRole(ctx context.Context, roleId int64) (role *entity.AdminRole, err error) {
+// getLoginRole 获取登录的角色信息
+func (s *sUserLogin) getLoginRole(ctx context.Context, roleId int64) (role *entity.AdminRole, err error) {
 	if err = dao.AdminRole.Ctx(ctx).Fields(dao.AdminRole.Columns().Id, dao.AdminRole.Columns().Key, dao.AdminRole.Columns().Status).WherePri(roleId).Scan(&role); err != nil {
 		err = gerror.Wrap(err, consts.ErrorORM)
 		return
@@ -115,7 +115,7 @@ func (s *sAdminSite) getLoginRole(ctx context.Context, roleId int64) (role *enti
 }
 
 // BindUserContext 绑定用户上下文
-func (s *sAdminSite) BindUserContext(ctx context.Context, claims *contexts.Identity) (err error) {
+func (s *sUserLogin) BindUserContext(ctx context.Context, claims *contexts.Identity) (err error) {
 	//// 如果不想每次访问都重新加载用户信息，可以放开注释。但在本次登录未失效前，用户信息不会刷新
 	// contexts.SetUser(ctx, claims)
 	// return
