@@ -54,12 +54,12 @@ func (s *sUserMember) LoginMemberInfo(ctx context.Context) (res *userin.LoginMem
 		return
 	}
 
-	// TODO：获取用户权限
-	// permissions, err := service.AdminMenu().LoginPermissions(ctx, memberId)
-	// if err != nil {
-	// 	return
-	// }
-	// res.Permissions = permissions
+	// 获取用户菜单权限
+	permissions, err := SUserRole.Permissions(ctx, memberId)
+	if err != nil {
+		return
+	}
+	res.Permissions = permissions
 
 	// 登录统计
 	stat, err := s.MemberLoginStat(ctx, &loginin.MemberLoginStatInp{MemberId: memberId})

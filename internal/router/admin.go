@@ -9,8 +9,9 @@ import (
 	"context"
 
 	"github.com/yclw/mspay/internal/consts"
+	"github.com/yclw/mspay/internal/controller/sys"
 	"github.com/yclw/mspay/internal/controller/user"
-	"github.com/yclw/mspay/internal/service/middleware"
+	"github.com/yclw/mspay/internal/middleware"
 	"github.com/yclw/mspay/util/simple"
 
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -25,10 +26,12 @@ func Admin(ctx context.Context, group *ghttp.RouterGroup) {
 	group.Group(simple.RouterPrefix(ctx, consts.AppAdmin), func(group *ghttp.RouterGroup) {
 		group.Bind(
 			user.Login, // 登录
+			sys.Config, // 配置
 		)
 		group.Middleware(middleware.SMiddleware.Auth)
 		group.Bind(
 			user.Member, // 用户
+			user.Menu,   // 菜单
 		)
 	})
 }

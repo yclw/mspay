@@ -14,13 +14,3 @@ type GetPermissionsReq struct {
 type GetPermissionsRes struct {
 	*userin.GetPermissionsModel
 }
-
-// ListReq 查询列表
-type ListReq struct {
-	g.Meta `path:"/role/list" method:"get" tags:"角色" summary:"获取角色列表"`
-	userin.RoleListInp
-}
-
-type ListRes struct {
-	*userin.RoleListModel
-}

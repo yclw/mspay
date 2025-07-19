@@ -24,17 +24,6 @@ func (c *cLogin) Ping(_ context.Context, _ *api.PingReq) (res *api.PingRes, err 
 	return
 }
 
-// LoginConfig 登录配置
-func (c *cLogin) LoginConfig(ctx context.Context, _ *api.LoginConfigReq) (res *api.LoginConfigRes, err error) {
-	res = new(api.LoginConfigRes)
-	login, err := sys.SSysConfig.GetLogin(ctx)
-	if err != nil {
-		return
-	}
-	res.LoginConfig = login
-	return
-}
-
 // Captcha 登录验证码
 func (c *cLogin) Captcha(ctx context.Context, _ *api.LoginCaptchaReq) (res *api.LoginCaptchaRes, err error) {
 	loginConf, err := sys.SSysConfig.GetLogin(ctx)
