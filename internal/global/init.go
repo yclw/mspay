@@ -6,7 +6,6 @@ import (
 	"runtime"
 
 	"github.com/yclw/mspay/internal/consts"
-	"github.com/yclw/mspay/internal/service/sys"
 	"github.com/yclw/mspay/pkg/cache"
 	"github.com/yclw/mspay/util/simple"
 	"github.com/yclw/mspay/util/validate"
@@ -42,7 +41,7 @@ func Init(ctx context.Context) {
 	SetAdapter(ctx)
 
 	// 初始化功能库配置
-	sys.SSysConfig.InitConfig(ctx)
+	InitConfig(ctx)
 
 	// 订阅集群同步
 	SubscribeClusterSync(ctx)

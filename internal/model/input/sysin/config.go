@@ -145,7 +145,6 @@ type LoginConfig struct {
 	CaptchaType    int     `json:"loginCaptchaType"`    // 验证码类型
 	Avatar         string  `json:"loginAvatar"`         // 头像
 	RoleId         int64   `json:"loginRoleId"`         // 角色ID
-	DeptId         int64   `json:"loginDeptId"`         // 部门ID
 	PostIds        []int64 `json:"loginPostIds"`        // 岗位ID
 	Protocol       string  `json:"loginProtocol"`       // 协议
 	Policy         string  `json:"loginPolicy"`         // 政策

@@ -2,7 +2,6 @@ package user
 
 import (
 	"context"
-	"fmt"
 
 	api "github.com/yclw/mspay/api/login"
 	"github.com/yclw/mspay/internal/consts"
@@ -21,19 +20,18 @@ var Login = cLogin{}
 type cLogin struct{}
 
 // Ping ping
-func (c *cLogin) Ping(_ context.Context, _ *api.SitePingReq) (res *api.SitePingRes, err error) {
+func (c *cLogin) Ping(_ context.Context, _ *api.PingReq) (res *api.PingRes, err error) {
 	return
 }
 
 // LoginConfig 登录配置
-func (c *cLogin) LoginConfig(ctx context.Context, _ *api.SiteLoginConfigReq) (res *api.SiteLoginConfigRes, err error) {
-	res = new(api.SiteLoginConfigRes)
+func (c *cLogin) LoginConfig(ctx context.Context, _ *api.LoginConfigReq) (res *api.LoginConfigRes, err error) {
+	res = new(api.LoginConfigRes)
 	login, err := sys.SSysConfig.GetLogin(ctx)
 	if err != nil {
 		return
 	}
 	res.LoginConfig = login
-	fmt.Println("res.LoginConfig", res.LoginConfig)
 	return
 }
 

@@ -12,7 +12,6 @@ import (
 	"github.com/yclw/mspay/util/simple"
 
 	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/database/gredis"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
@@ -25,35 +24,6 @@ type sSysConfig struct{}
 
 func NewSysConfig() *sSysConfig {
 	return &sSysConfig{}
-}
-
-// InitConfig 初始化系统配置
-func (s *sSysConfig) InitConfig(ctx context.Context) {
-	if err := s.LoadConfig(ctx); err != nil {
-		g.Log().Fatalf(ctx, "InitConfig fail：%+v", err)
-	}
-}
-
-// LoadConfig 加载系统配置
-func (s *sSysConfig) LoadConfig(ctx context.Context) (err error) {
-
-	// 上传配置
-	upload, err := s.GetUpload(ctx)
-	if err != nil {
-		return
-	}
-	storager.SetConfig(upload)
-
-	// 登录令牌配置
-	tk, err := s.GetLoadToken(ctx)
-	if err != nil {
-		return
-	}
-	token.SetConfig(tk)
-
-	// 更多
-	// ...
-	return
 }
 
 // GetLogin 获取登录配置
@@ -227,11 +197,4 @@ func (s *sSysConfig) syncUpdate(ctx context.Context, in *sysin.UpdateConfigInp) 
 		err = gerror.Newf("syncUpdate %v conifg fail：%+v", in.Group, err.Error())
 	}
 	return
-}
-
-// ClusterSync 集群同步
-func (s *sSysConfig) ClusterSync(ctx context.Context, message *gredis.Message) {
-	if err := s.LoadConfig(ctx); err != nil {
-		g.Log().Errorf(ctx, "ClusterSync fail：%+v", err)
-	}
 }

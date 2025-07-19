@@ -7,6 +7,7 @@ const (
 	DeptTypeUser     = "user"     // 用户
 )
 
+// GroupScopeSelect 部门选择
 type GroupScopeSelect struct {
 	Type     string        `json:"type,omitempty"`
 	Label    string        `json:"label"`
@@ -15,6 +16,7 @@ type GroupScopeSelect struct {
 	Children []ScopeSelect `json:"children,omitempty"`
 }
 
+// ScopeSelect 部门选择
 type ScopeSelect struct {
 	Label string `json:"label"`
 	Value int    `json:"value"`

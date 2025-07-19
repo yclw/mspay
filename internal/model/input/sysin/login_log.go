@@ -12,8 +12,8 @@ import (
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/yclw/mspay/internal/model/entity"
-	"github.com/yclw/mspay/internal/model/input/adminin"
 	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/internal/model/input/loginin"
 )
 
 // LoginLogDeleteInp 删除登录日志
@@ -75,6 +75,6 @@ type LoginLogExportModel struct {
 
 // LoginLogPushInp 解推送登录日志
 type LoginLogPushInp struct {
-	Response *adminin.LoginModel
+	Response *loginin.LoginModel
 	Err      error
 }

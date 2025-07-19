@@ -6,7 +6,7 @@ import (
 	"github.com/yclw/mspay/internal/consts"
 	"github.com/yclw/mspay/internal/dao"
 	"github.com/yclw/mspay/internal/model/entity"
-	"github.com/yclw/mspay/internal/model/input/adminin"
+	"github.com/yclw/mspay/internal/model/input/loginin"
 	"github.com/yclw/mspay/pkg/contexts"
 	"github.com/yclw/mspay/pkg/token"
 	"github.com/yclw/mspay/util/simple"
@@ -24,7 +24,7 @@ func NewUserLogin() *sUserLogin {
 }
 
 // AccountLogin 账号登录
-func (s *sUserLogin) AccountLogin(ctx context.Context, in *adminin.AccountLoginInp) (res *adminin.LoginModel, err error) {
+func (s *sUserLogin) AccountLogin(ctx context.Context, in *loginin.AccountLoginInp) (res *loginin.LoginModel, err error) {
 
 	var mb *entity.AdminMember
 	if err = dao.AdminMember.Ctx(ctx).Where("username", in.Username).Scan(&mb); err != nil {
@@ -37,7 +37,7 @@ func (s *sUserLogin) AccountLogin(ctx context.Context, in *adminin.AccountLoginI
 		return
 	}
 
-	res = new(adminin.LoginModel)
+	res = new(loginin.LoginModel)
 	res.Id = mb.Id
 	res.Username = mb.Username
 	if mb.Salt == "" {
@@ -60,7 +60,7 @@ func (s *sUserLogin) AccountLogin(ctx context.Context, in *adminin.AccountLoginI
 }
 
 // handleLogin 处理登录
-func (s *sUserLogin) handleLogin(ctx context.Context, mb *entity.AdminMember) (res *adminin.LoginModel, err error) {
+func (s *sUserLogin) handleLogin(ctx context.Context, mb *entity.AdminMember) (res *loginin.LoginModel, err error) {
 	role, err := s.getLoginRole(ctx, mb.RoleId)
 	if err != nil {
 		return nil, err
@@ -85,7 +85,7 @@ func (s *sUserLogin) handleLogin(ctx context.Context, mb *entity.AdminMember) (r
 		return nil, err
 	}
 
-	res = &adminin.LoginModel{
+	res = &loginin.LoginModel{
 		Username: user.Username,
 		Id:       user.Id,
 		Token:    lt,
