@@ -9,9 +9,9 @@ import (
 	"context"
 
 	"github.com/yclw/mspay/internal/consts"
+	"github.com/yclw/mspay/internal/controller/middleware"
 	"github.com/yclw/mspay/internal/controller/sys"
 	"github.com/yclw/mspay/internal/controller/user"
-	"github.com/yclw/mspay/internal/middleware"
 	"github.com/yclw/mspay/util/simple"
 
 	"github.com/gogf/gf/v2/net/ghttp"

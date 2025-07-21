@@ -3,8 +3,8 @@ package cmd
 import (
 	"context"
 
+	"github.com/yclw/mspay/internal/controller/middleware"
 	"github.com/yclw/mspay/internal/hook"
-	"github.com/yclw/mspay/internal/middleware"
 	"github.com/yclw/mspay/internal/router"
 	"github.com/yclw/mspay/pkg/casbin"
 
