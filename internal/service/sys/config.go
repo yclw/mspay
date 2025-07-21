@@ -18,11 +18,11 @@ import (
 	"github.com/gogf/gf/v2/util/gconv"
 )
 
-var SSysConfig = NewSysConfig()
+var SSysConfig = NewTSysConfig()
 
 type sSysConfig struct{}
 
-func NewSysConfig() *sSysConfig {
+func NewTSysConfig() *sSysConfig {
 	return &sSysConfig{}
 }
 
@@ -81,9 +81,9 @@ func (s *sSysConfig) GetConfigByGroup(ctx context.Context, in *sysin.GetConfigIn
 		return
 	}
 
-	var models []*entity.SysConfig
-	cols := dao.SysConfig.Columns()
-	if err = dao.SysConfig.Ctx(ctx).Fields(cols.Key, cols.Value, cols.Type).Where(cols.Group, in.Group).Scan(&models); err != nil {
+	var models []*entity.TSysConfig
+	cols := dao.TSysConfig.Columns()
+	if err = dao.TSysConfig.Ctx(ctx).Fields(cols.Key, cols.Value, cols.Type).Where(cols.Group, in.Group).Scan(&models); err != nil {
 		err = gerror.Wrapf(err, "获取配置分组[ %v ]失败，请稍后重试！", in.Group)
 		return
 	}
@@ -105,7 +105,7 @@ func (s *sSysConfig) GetConfigByGroup(ctx context.Context, in *sysin.GetConfigIn
 }
 
 // ConversionType 转换类型
-func (s *sSysConfig) ConversionType(ctx context.Context, models *entity.SysConfig) (value interface{}, err error) {
+func (s *sSysConfig) ConversionType(ctx context.Context, models *entity.TSysConfig) (value interface{}, err error) {
 	if models == nil {
 		err = gerror.New("数据不存在")
 		return
@@ -120,25 +120,25 @@ func (s *sSysConfig) UpdateConfigByGroup(ctx context.Context, in *sysin.UpdateCo
 		return
 	}
 	var (
-		mod    = dao.SysConfig.Ctx(ctx)
-		models []*entity.SysConfig
+		mod    = dao.TSysConfig.Ctx(ctx)
+		models []*entity.TSysConfig
 	)
 
 	if err = mod.Where("group", in.Group).Scan(&models); err != nil {
 		return
 	}
 
-	err = dao.SysConfig.Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
+	err = dao.TSysConfig.Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
 		for k, v := range in.List {
 			row := s.getConfigByKey(k, models)
 			// 新增
 			if row == nil {
-				err = gerror.Newf("暂不支持从前台添加变量，请先在数据库表[%v]中配置变量：%v", dao.SysConfig.Table(), k)
+				err = gerror.Newf("暂不支持从前台添加变量，请先在数据库表[%v]中配置变量：%v", dao.TSysConfig.Table(), k)
 				return
 			}
 
 			// 更新
-			_, err = dao.SysConfig.Ctx(ctx).Where("id", row.Id).Data(g.Map{"value": v, "updated_at": gtime.Now()}).Update()
+			_, err = dao.TSysConfig.Ctx(ctx).Where("id", row.Id).Data(g.Map{"value": v, "updated_at": gtime.Now()}).Update()
 			if err != nil {
 				return
 			}
@@ -154,7 +154,7 @@ func (s *sSysConfig) UpdateConfigByGroup(ctx context.Context, in *sysin.UpdateCo
 	return
 }
 
-func (s *sSysConfig) getConfigByKey(key string, models []*entity.SysConfig) *entity.SysConfig {
+func (s *sSysConfig) getConfigByKey(key string, models []*entity.TSysConfig) *entity.TSysConfig {
 	if len(models) == 0 {
 		return nil
 	}

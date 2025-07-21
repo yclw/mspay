@@ -2,13 +2,11 @@ package cmd
 
 import (
 	"context"
-	// "hotgo/internal/library/addons"
-	// "hotgo/internal/library/casbin"
-	// "hotgo/internal/library/hggen"
-	// "hotgo/internal/service"
 
+	"github.com/yclw/mspay/internal/hook"
 	"github.com/yclw/mspay/internal/middleware"
 	"github.com/yclw/mspay/internal/router"
+	"github.com/yclw/mspay/pkg/casbin"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -25,24 +23,28 @@ var (
 			s := g.Server()
 
 			// 初始化请求前回调
-			// s.BindHookHandler("/*any", ghttp.HookBeforeServe, service.Hook().BeforeServe)
+			s.BindHookHandler("/*any", ghttp.HookBeforeServe, hook.Hook.BeforeServe)
 
 			// 请求响应结束后回调
-			// s.BindHookHandler("/*any", ghttp.HookAfterOutput, service.Hook().AfterOutput)
+			s.BindHookHandler("/*any", ghttp.HookAfterOutput, hook.Hook.AfterOutput)
 
 			// 注册全局中间件
 			s.BindMiddleware("/*any", []ghttp.HandlerFunc{
-				middleware.SMiddleware.Ctx, // 初始化请求上下文，一般需要第一个进行加载，后续中间件存在依赖关系
-				// service.Middleware().CORS,            // 跨域中间件，自动处理跨域问题
-				// service.Middleware().Blacklist,       // IP黑名单中间件，如果请求IP被后台拉黑，所有请求将被拒绝
-				// service.Middleware().PreFilter,       // 请求输入预处理，api使用gf规范路由并且XxxReq结构体实现了validate.Filter接口即可隐式预处理
-				middleware.SMiddleware.ResponseHandler, // HTTP响应预处理，在业务处理完成后，对响应结果进行格式化和错误过滤，将处理后的数据发送给请求方
+				middleware.Middleware.Ctx,             // 初始化请求上下文，一般需要第一个进行加载，后续中间件存在依赖关系
+				middleware.Middleware.CORS,            // 跨域中间件，自动处理跨域问题
+				middleware.Middleware.PreFilter,       // 请求输入预处理，api使用gf规范路由并且XxxReq结构体实现了validate.Filter接口即可隐式预处理
+				middleware.Middleware.ResponseHandler, // HTTP响应预处理，在业务处理完成后，对响应结果进行格式化和错误过滤，将处理后的数据发送给请求方
 			}...)
 
 			s.Group("/", func(group *ghttp.RouterGroup) {
 				// 注册后台路由
 				router.Admin(ctx, group)
 			})
+
+			// 初始化casbin权限
+			// provider := casbin.NewPolicyProvider()
+			// pkgcasbin.InitEnforcer(ctx, dao.AdminRoleCasbin.Table(), provider, "config/casbin.conf")
+			casbin.InitEnforcer(ctx)
 
 			serverWg.Add(1)
 

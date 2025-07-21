@@ -5,14 +5,6 @@
 // @License  https://github.com/bufanyun/hotgo/blob/master/LICENSE
 package storager
 
-import (
-	"context"
-
-	"github.com/yclw/mspay/internal/dao"
-
-	"github.com/gogf/gf/v2/database/gdb"
-)
-
 // UploadConfig 上传配置
 type UploadConfig struct {
 	// 通用配置
@@ -67,8 +59,4 @@ func SetConfig(c *UploadConfig) {
 
 func GetConfig() *UploadConfig {
 	return config
-}
-
-func GetModel(ctx context.Context) *gdb.Model {
-	return dao.SysAttachment.Ctx(ctx)
 }

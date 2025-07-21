@@ -29,7 +29,10 @@ type AccountLoginReq struct {
 }
 
 type AccountLoginRes struct {
-	*loginin.LoginModel
+	Id       int64  `json:"id"              dc:"用户ID"`
+	Username string `json:"username"        dc:"用户名"`
+	Token    string `json:"token"           dc:"登录token"`
+	Expires  int64  `json:"expires"         dc:"登录有效期"`
 }
 
 // LoginLogoutReq 注销登录

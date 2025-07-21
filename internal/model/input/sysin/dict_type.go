@@ -1,21 +1,17 @@
-// Package sysin
-// @Link  https://github.com/bufanyun/hotgo
-// @Copyright  Copyright (c) 2023 HotGo CLI
-// @Author  Ms <133814250@qq.com>
-// @License  https://github.com/bufanyun/hotgo/blob/master/LICENSE
 package sysin
 
 import (
 	"context"
 
+	"github.com/yclw/mspay/internal/model/entity"
+
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/yclw/mspay/internal/model/entity"
 )
 
 // DictTypeEditInp 修改/新增字典数据
 type DictTypeEditInp struct {
-	entity.SysDictType
+	entity.TDictType
 }
 
 func (in *DictTypeEditInp) Filter(ctx context.Context) (err error) {
@@ -68,7 +64,7 @@ type DictTreeSelectInp struct {
 type DictTreeSelectModel []g.Map
 
 type DictTypeTree struct {
-	entity.SysDictType
+	entity.TDictType
 	Disabled bool            `json:"disabled"  dc:"是否禁用"`
 	Label    string          `json:"label"     dc:"标签"`
 	Value    int64           `json:"value"     dc:"键值"`

@@ -5,12 +5,9 @@ import (
 	"github.com/yclw/mspay/internal/model/input/form"
 )
 
-// MemberPermissions 用户菜单权限信息
-type MemberPermissions []string
-
 // MenuEditInp 修改/新增菜单
 type MenuEditInp struct {
-	entity.AdminMenu
+	entity.TMenuInfo
 }
 
 type MenuEditModel struct{}
@@ -38,7 +35,7 @@ type MenuSearchListModel []*TreeMenu
 
 // MenuTree 树
 type MenuTree struct {
-	entity.AdminMenu
+	entity.TMenuInfo
 	Key      int64       `json:"key" `
 	Label    string      `json:"label"     dc:"标签"`
 	Children []*MenuTree `json:"children"`
@@ -46,6 +43,7 @@ type MenuTree struct {
 
 type MenuListModel struct {
 	List []*MenuTree `json:"list"`
+	form.PageRes
 }
 
 // MenuRouteMeta 菜单路由
@@ -77,7 +75,7 @@ type MenuRoute struct {
 
 // MenuRouteSummary 菜单树结构
 type MenuRouteSummary struct {
-	entity.AdminMenu
+	entity.TMenuInfo
 	Children []*MenuRouteSummary
 }
 

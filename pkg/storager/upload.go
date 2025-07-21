@@ -70,7 +70,7 @@ func New(name ...string) UploadDrive {
 }
 
 // DoUpload 上传入口
-func DoUpload(ctx context.Context, typ string, file *ghttp.UploadFile) (result *entity.SysAttachment, err error) {
+func DoUpload(ctx context.Context, typ string, file *ghttp.UploadFile) (result *entity.TAttachment, err error) {
 	if file == nil {
 		err = gerror.New("文件必须!")
 		return
@@ -211,8 +211,8 @@ func GenFullPath(basePath, ext string) string {
 }
 
 // write 写入附件记录
-func write(ctx context.Context, meta *FileMeta, fullPath string) (models *entity.SysAttachment, err error) {
-	models = &entity.SysAttachment{
+func write(ctx context.Context, meta *FileMeta, fullPath string) (models *entity.TAttachment, err error) {
+	models = &entity.TAttachment{
 		Id:        0,
 		AppId:     contexts.GetModule(ctx),
 		MemberId:  contexts.GetUserId(ctx),
@@ -229,7 +229,7 @@ func write(ctx context.Context, meta *FileMeta, fullPath string) (models *entity
 		Status:    consts.StatusEnabled,
 	}
 
-	id, err := GetModel(ctx).Data(models).OmitEmptyData().InsertAndGetId()
+	id, err := dao.TAttachment.Ctx(ctx).Data(models).OmitEmptyData().InsertAndGetId()
 	if err != nil {
 		return
 	}
@@ -238,8 +238,8 @@ func write(ctx context.Context, meta *FileMeta, fullPath string) (models *entity
 }
 
 // HasFile 检查附件是否存在
-func HasFile(ctx context.Context, md5 string) (res *entity.SysAttachment, err error) {
-	if err = GetModel(ctx).Where(dao.SysAttachment.Columns().Md5, md5).Scan(&res); err != nil {
+func HasFile(ctx context.Context, md5 string) (res *entity.TAttachment, err error) {
+	if err = dao.TAttachment.Ctx(ctx).Where(dao.TAttachment.Columns().Md5, md5).Scan(&res); err != nil {
 		err = gerror.Wrap(err, "检查文件hash时出现错误")
 		return
 	}
@@ -251,10 +251,10 @@ func HasFile(ctx context.Context, md5 string) (res *entity.SysAttachment, err er
 	// 只有在上传时才会检查md5值，如果附件存在则更新最后上传时间，保证上传列表更新显示在最前面
 	if res.Id > 0 {
 		update := g.Map{
-			dao.SysAttachment.Columns().Status:    consts.StatusEnabled,
-			dao.SysAttachment.Columns().UpdatedAt: gtime.Now(),
+			dao.TAttachment.Columns().Status:    consts.StatusEnabled,
+			dao.TAttachment.Columns().UpdatedAt: gtime.Now(),
 		}
-		_, _ = GetModel(ctx).WherePri(res.Id).Data(update).Update()
+		_, _ = dao.TAttachment.Ctx(ctx).WherePri(res.Id).Data(update).Update()
 	}
 	return
 }

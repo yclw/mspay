@@ -28,10 +28,13 @@ func Admin(ctx context.Context, group *ghttp.RouterGroup) {
 			user.Login, // 登录
 			sys.Config, // 配置
 		)
-		group.Middleware(middleware.SMiddleware.Auth)
+		group.Middleware(middleware.Middleware.Auth)
 		group.Bind(
-			user.Member, // 用户
-			user.Menu,   // 菜单
+			user.Member,  // 用户
+			user.Menu,    // 菜单
+			user.Role,    // 角色
+			sys.DictType, // 字典类型
+			sys.DictData, // 字典数据
 		)
 	})
 }

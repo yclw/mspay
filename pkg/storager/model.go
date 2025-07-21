@@ -43,11 +43,11 @@ type CheckMultipartParams struct {
 }
 
 type CheckMultipartModel struct {
-	UploadId        string                `json:"uploadId"        dc:"上传事件ID"`
-	Attachment      *entity.SysAttachment `json:"attachment"      dc:"附件"`
-	WaitUploadIndex []int                 `json:"waitUploadIndex" dc:"等待上传的分片索引"`
-	Progress        float64               `json:"progress"        dc:"上传进度"`
-	SizeFormat      string                `json:"sizeFormat"      dc:"文件大小"`
+	UploadId        string              `json:"uploadId"        dc:"上传事件ID"`
+	Attachment      *entity.TAttachment `json:"attachment"      dc:"附件"`
+	WaitUploadIndex []int               `json:"waitUploadIndex" dc:"等待上传的分片索引"`
+	Progress        float64             `json:"progress"        dc:"上传进度"`
+	SizeFormat      string              `json:"sizeFormat"      dc:"文件大小"`
 }
 
 // UploadPartParams 分片上传
@@ -63,7 +63,7 @@ type UploadPartParams struct {
 }
 
 type UploadPartModel struct {
-	Attachment *entity.SysAttachment `json:"attachment" dc:"附件"`
-	Progress   float64               `json:"progress"   dc:"上传进度"`
-	Finish     bool                  `json:"finish"     dc:"是否完成"`
+	Attachment *entity.TAttachment `json:"attachment" dc:"附件"`
+	Progress   float64             `json:"progress"   dc:"上传进度"`
+	Finish     bool                `json:"finish"     dc:"是否完成"`
 }

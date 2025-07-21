@@ -12,10 +12,15 @@ import (
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/net/ghttp"
-	"github.com/gogf/gf/v2/util/gconv"
 )
 
 var Login = cLogin{}
+
+// 依赖
+var (
+	LoginService  = service.SUserLogin
+	ConfigService = sys.SSysConfig
+)
 
 type cLogin struct{}
 
@@ -26,7 +31,7 @@ func (c *cLogin) Ping(_ context.Context, _ *api.PingReq) (res *api.PingRes, err 
 
 // Captcha 登录验证码
 func (c *cLogin) Captcha(ctx context.Context, _ *api.LoginCaptchaReq) (res *api.LoginCaptchaRes, err error) {
-	loginConf, err := sys.SSysConfig.GetLogin(ctx)
+	loginConf, err := ConfigService.GetLogin(ctx)
 	if err != nil {
 		return
 	}
@@ -37,25 +42,30 @@ func (c *cLogin) Captcha(ctx context.Context, _ *api.LoginCaptchaReq) (res *api.
 
 // AccountLogin 账号登录
 func (c *cLogin) AccountLogin(ctx context.Context, req *api.AccountLoginReq) (res *api.AccountLoginRes, err error) {
-	login, err := sys.SSysConfig.GetLogin(ctx)
+	// 获取登录配置
+	config, err := ConfigService.GetLogin(ctx)
 	if err != nil {
 		return
 	}
 
-	if !req.IsLock && login.CaptchaSwitch == consts.StatusEnabled {
-		// 校验 验证码
-		if !captcha.Verify(req.Cid, req.Code) {
-			err = gerror.New("验证码错误")
-			return
-		}
+	// 校验验证码
+	if !req.IsLock && config.CaptchaSwitch == consts.StatusEnabled && !captcha.Verify(req.Cid, req.Code) {
+		err = gerror.New("验证码错误")
+		return
 	}
 
-	model, err := service.SUserLogin.AccountLogin(ctx, &req.AccountLoginInp)
+	// 账号登录
+	model, err := LoginService.AccountLogin(ctx, &req.AccountLoginInp)
 	if err != nil {
 		return
 	}
 
-	err = gconv.Scan(model, &res)
+	res = new(api.AccountLoginRes)
+	res.Id = model.Id
+	res.Username = model.Username
+	res.Token = model.Token
+	res.Expires = model.Expires
+
 	return
 }
 

@@ -12,13 +12,13 @@ type DefaultTree struct {
 
 // TreeMenu 菜单树
 type TreeMenu struct {
-	entity.AdminMenu
+	entity.TMenuInfo
 	Children []*TreeMenu `json:"children"`
 }
 
 // LabelTreeMenu 菜单kv树
 type LabelTreeMenu struct {
-	entity.AdminMenu
+	entity.TMenuInfo
 	Key      int64            `json:"key"       description:"键名"`
 	Label    string           `json:"label"       description:"键标签"`
 	Children []*LabelTreeMenu `json:"children"`

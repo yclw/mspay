@@ -14,7 +14,7 @@ import (
 )
 
 // ResponseHandler HTTP响应预处理
-func (s *sMiddleware) ResponseHandler(r *ghttp.Request) {
+func (s *cMiddleware) ResponseHandler(r *ghttp.Request) {
 	r.Middleware.Next()
 
 	// 错误状态码接管
@@ -35,10 +35,10 @@ func (s *sMiddleware) ResponseHandler(r *ghttp.Request) {
 
 	switch contentType {
 	case consts.HTTPContentTypeHtml:
-		s.responseHtml(r)
+		responseHtml(r)
 		return
 	case consts.HTTPContentTypeXml:
-		s.responseXml(r)
+		responseXml(r)
 		return
 	case consts.HTTPContentTypeStream:
 	default:
@@ -47,7 +47,7 @@ func (s *sMiddleware) ResponseHandler(r *ghttp.Request) {
 }
 
 // responseHtml html模板响应
-func (s *sMiddleware) responseHtml(r *ghttp.Request) {
+func responseHtml(r *ghttp.Request) {
 	code, message, resp := parseResponse(r)
 	if code == gcode.CodeOK.Code() {
 		return
@@ -58,7 +58,7 @@ func (s *sMiddleware) responseHtml(r *ghttp.Request) {
 }
 
 // responseXml xml响应
-func (s *sMiddleware) responseXml(r *ghttp.Request) {
+func responseXml(r *ghttp.Request) {
 	code, message, data := parseResponse(r)
 	response.RXml(r, code, message, data)
 }

@@ -5,13 +5,14 @@ import (
 
 	"github.com/yclw/mspay/internal/model/entity"
 	"github.com/yclw/mspay/internal/model/input/form"
+	"github.com/yclw/mspay/pkg/dict"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 )
 
 // DictDataEditInp 修改/新增字典数据
 type DictDataEditInp struct {
-	entity.SysDictData
+	entity.TDictData
 	TypeID int64 `json:"typeID"  dc:"字典类型ID"`
 }
 
@@ -77,7 +78,7 @@ type DictDataListInp struct {
 type DictDataListModel struct {
 	TypeID int64  `json:"typeId"`
 	Key    string `json:"key"`
-	entity.SysDictData
+	entity.TDictData
 }
 
 // DataSelectInp 获取指定字典选项
@@ -85,15 +86,4 @@ type DataSelectInp struct {
 	Type string `in:"path" v:"required#字典类型不能为空" dc:"字典类型"`
 }
 
-type DataSelectModel []*Option
-
-// Option 字典数据选项
-type Option struct {
-	Key       interface{} `json:"key"`
-	Label     string      `json:"label"     description:"字典标签"`
-	Value     interface{} `json:"value"     description:"字典键值"`
-	ValueType string      `json:"valueType" description:"键值数据类型"`
-	Type      string      `json:"type"      description:"字典类型"`
-	ListClass string      `json:"listClass" description:"表格回显样式"`
-	Extra     interface{} `json:"extra"     description:"额外数据配置"`
-}
+type DataSelectModel []*dict.Option
